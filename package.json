@@ -1,0 +1,48 @@
+{
+  "name": "xta",
+  "version": "1.0.0",
+  "description": "Server with exchange rate REST and GraphQL endpoints",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "start": "nest start",
+    "test": "ts-mocha -p tsconfig.json src/**/*.spec.ts test/**/*.spec.ts"
+  },
+  "author": "Wesley Chong",
+  "devDependencies": {
+    "@nestjs/testing": "^8.0.6",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.6.1",
+    "@types/sinon": "^10.0.2",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-no-only-tests": "^2.6.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "mocha": "^9.0.3",
+    "nock": "^13.1.1",
+    "prettier": "^2.3.2",
+    "sinon": "^11.1.2",
+    "supertest": "^6.1.6",
+    "ts-mocha": "^8.0.0",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@nestjs/cli": "^8.1.1",
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.0.6",
+    "@nestjs/platform-express": "^8.0.6",
+    "@nestjs/terminus": "^7.2.0",
+    "helmet": "^4.6.0",
+    "joi": "^17.4.2",
+    "joiful": "^3.0.2",
+    "reflect-metadata": "^0.1.13"
+  }
+}
