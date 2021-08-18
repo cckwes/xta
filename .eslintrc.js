@@ -20,6 +20,7 @@ module.exports = {
     "comma-dangle": ["error", "always-multiline"],
     "no-trailing-spaces": ["error"],
     "no-only-tests/no-only-tests": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
   },
