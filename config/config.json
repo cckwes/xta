@@ -1,7 +1,10 @@
 {
-  "mongodbURL": "mongodb://xta:password@localhost:27017",
+  "mongodbURL": "mongodb://xta:password@localhost:27017/agenda",
   "redis": {
     "host": "localhost",
     "port": 6379
+  },
+  "fixer": {
+    "apiKey": "sample-api-key"
   }
 }

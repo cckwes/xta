@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "description": "Server with exchange rate REST and GraphQL endpoints",
   "main": "index.js",
+  "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "clean": "docker-compose -f docker-compose.yml kill && docker-compose -f docker-compose.yml rm -f",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "start": "nest start",
-    "test": "ts-mocha -p tsconfig.json src/**/*.spec.ts test/**/*.spec.ts"
+    "test": "ts-mocha -p tsconfig.json src/**/*.spec.ts test/**/*.spec.ts",
+    "test:local": "yarn test:pre && yarn test && yarn clean",
+    "test:pre": "yarn clean && docker-compose -f docker-compose.yml up -d mongo redis && sleep 10"
   },
   "author": "Wesley Chong",
   "devDependencies": {
     "@nestjs/testing": "^8.0.6",
     "@types/chai": "^4.2.21",
+    "@types/ioredis": "^4.26.7",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.6.1",
     "@types/sinon": "^10.0.2",
@@ -41,11 +46,14 @@
     "@nestjs/graphql": "^8.0.2",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/terminus": "^7.2.0",
+    "agenda": "^4.2.1",
     "apollo-server-express": "^2.25.2",
     "graphql": "^15.5.1",
     "helmet": "^4.6.0",
+    "ioredis": "^4.27.8",
     "joi": "^17.4.2",
     "joiful": "^3.0.2",
+    "mongodb": "^4.1.0",
     "reflect-metadata": "^0.1.13"
   }
 }
