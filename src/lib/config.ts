@@ -9,6 +9,7 @@ export interface ConfigSchema {
   };
   fixer: {
     apiKey: string;
+    baseURL: string;
   };
 }
 
@@ -20,6 +21,7 @@ const configSchema = J.object({
   }),
   fixer: J.object({
     apiKey: J.string().required(),
+    baseURL: J.string().required(),
   }),
 });
 
@@ -48,6 +50,7 @@ const loadConfigFromEnvVar = (): ConfigSchema => {
     },
     fixer: {
       apiKey: process.env.FIXER_API_KEY,
+      baseURL: process.env.FIXER_BASE_URL,
     },
   };
   return validateConfig(config);

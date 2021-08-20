@@ -1,4 +1,4 @@
-import * as Redis from "ioredis";
+import Redis from "ioredis";
 import { ConfigSchema } from "./config";
 import { HealthIndicatorResult } from "@nestjs/terminus";
 
@@ -21,11 +21,15 @@ const healthCheck = async (): Promise<HealthIndicatorResult> => {
   }
 };
 
-const setWithExpiry = async (key: string, value: string | number, TTL: number): Promise<void> => {
-  await redis.setex(key, TTL, value);
+const setWithExpiry = async (
+  key: string,
+  value: string | number,
+  TTLSeconds: number,
+): Promise<void> => {
+  await redis.setex(key, TTLSeconds, value);
 };
 
-const get = async (key: string): Promise<unknown> => {
+const get = async (key: string): Promise<any> => {
   return redis.get(key);
 };
 

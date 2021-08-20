@@ -5,6 +5,7 @@
     "port": 6379
   },
   "fixer": {
-    "apiKey": "sample-api-key"
+    "apiKey": "sample-api-key",
+    "baseURL": "http://fixer.local"
   }
 }
