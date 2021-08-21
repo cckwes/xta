@@ -33,4 +33,8 @@ const get = async (key: string): Promise<any> => {
   return redis.get(key);
 };
 
-export { initialize, healthCheck, setWithExpiry, get };
+const clearAllData = async (): Promise<string> => {
+  return redis.flushall();
+};
+
+export { initialize, healthCheck, setWithExpiry, get, clearAllData };

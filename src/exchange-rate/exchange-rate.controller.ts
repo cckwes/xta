@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Controller,
   Get,
+  Logger,
   Query,
   ServiceUnavailableException,
   UsePipes,
@@ -10,14 +11,16 @@ import { ExchangeRateService } from "./exchange-rate.service";
 import { ExchangeRateQueries } from "./exchange-rate.input";
 import { JoiValidationPipe } from "../lib/joi-validation.pipe";
 import { supportedCurrencies } from "./exchange-rate.data";
+import { ExchangeRateOutput } from "./exchange-rate.output";
 
 @Controller("/exchange-rate")
 export class ExchangeRateController {
+  private logger = new Logger("ExchangeRateController");
   constructor(private readonly exchangeRateService: ExchangeRateService) {}
 
   @Get("/")
   @UsePipes(new JoiValidationPipe({ query: ExchangeRateQueries }))
-  async getExchangeRate(@Query() queries: ExchangeRateQueries): Promise<number> {
+  async getExchangeRate(@Query() queries: ExchangeRateQueries): Promise<ExchangeRateOutput> {
     const { from, to } = queries;
 
     if (!supportedCurrencies.includes(from)) {
@@ -27,13 +30,16 @@ export class ExchangeRateController {
       throw new BadRequestException("to currency is not supported");
     }
 
-    const rate = this.exchangeRateService.getExchangeRate(from, to);
-    if (!rate) {
+    try {
+      const rate = await this.exchangeRateService.getExchangeRate(from, to);
+
+      return { rate };
+    } catch (error) {
+      this.logger.error(`Error getting rate: ${JSON.stringify(error)}`);
+
       throw new ServiceUnavailableException(
         "Rate not available at the moment, please try again later",
       );
     }
-
-    return rate;
   }
 }

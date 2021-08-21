@@ -28,7 +28,7 @@ export class ExchangeRateService {
     const key = `exchange-rate:${from}-${to}`;
     const rateFromCache = await get(key);
     if (rateFromCache) {
-      return rateFromCache;
+      return Number(rateFromCache);
     }
 
     const result = await this.rateProviderService.getRate(from, [to]);
@@ -53,6 +53,7 @@ export class ExchangeRateService {
       const to = Array.from(simplifiedRatePairs[key]);
 
       try {
+        console.log("scheduler call get rate");
         const rates = await this.rateProviderService.getRate(from, to);
 
         for (const toCurrency in rates.rates) {
