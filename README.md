@@ -38,4 +38,6 @@ yarn up-deps
 yarn test
 ```
 
+### Demo
 
+- a demo server is deployed at `34.126.71.5`, just replaced the `localhost:3000` with this ip address to try it out
