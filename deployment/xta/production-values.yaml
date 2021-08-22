@@ -1,0 +1,77 @@
+# Production values
+
+replicaCount: 1
+
+image:
+  repository: cckwes/xta
+  pullPolicy: Always
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+containerPort: 3000
+
+livenessProbe:
+  path: /health-check
+readinessProbe:
+  path: /health-check
+
+environment:
+  - name: REDIS_HOST
+    value: redis-master
+  - name: REDIS_PORT
+    value: 6379
+  - name: FIXER_BASE_URL
+    value: "https://data.fixer.io/api/"
+  - name: ALWAYS_IN_CACHE_RATE_PAIRS
+    value: "[{\"from\": \"USD\", \"to\": \"SGD\"}, {\"from\": \"SGD\", \"to\": \"USD\"}, {\"from\": \"USD\", \"to\": \"HKD\"}, {\"from\": \"HKD\", \"to\": \"USD\"}]"
+
+secretConfig:
+  - name: MONGODB_URL
+    valueFrom:
+      secretKeyRef:
+        name: xta-secret
+        key: MONGODB_URL
+  - name: FIXER_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: xta-secret
+        key: FIXER_API_KEY
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - paths:
+        - path: /
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,0 +1,9 @@
+{{- $fullName := include "xta.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}
+data:
+  {{- range $idx, $item := .Values.environment }}
+  {{ $item.name }}: {{ $item.value | quote }}
+  {{- end}}

@@ -38,3 +38,14 @@ jobs:
           tags: |
             cckwes/xta:latest
             cckwes/xta:${{ steps.package-version.outputs.current-version }}
+
+      - name: Deploy helm chart
+        uses: deliverybot/helm@v1
+        with:
+          release: xta
+          namespace: production
+          chart: ./deployment/xta
+          value-files: ./deployment/xta/production-values.yaml
+          helm: helm3
+        env:
+          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}
