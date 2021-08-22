@@ -11,8 +11,8 @@
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "start": "nest start",
     "test": "nyc ts-mocha -p tsconfig.json src/**/*.spec.ts test/**/*.spec.ts",
-    "test:local": "yarn test:pre && yarn test && yarn clean",
-    "test:pre": "yarn clean && docker-compose -f docker-compose.yml up -d mongo redis && sleep 10"
+    "test:local": "yarn up-deps && yarn test && yarn clean",
+    "up-deps": "yarn clean && docker-compose -f docker-compose.yml up -d mongo redis && sleep 10"
   },
   "author": "Wesley Chong",
   "devDependencies": {

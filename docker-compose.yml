@@ -36,7 +36,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       FIXER_API_KEY: "api-key"
-      FIXER_BASE_URL: "http://fixer.local"
+      FIXER_BASE_URL: "http://data.fixer.io/api/"
       ALWAYS_IN_CACHE_RATE_PAIRS: "[{\"from\": \"USD\", \"to\": \"SGD\"}, {\"from\": \"SGD\", \"to\": \"USD\"}, {\"from\": \"USD\", \"to\": \"HKD\"}, {\"from\": \"HKD\", \"to\": \"USD\"}]"
     depends_on:
       - mongo
