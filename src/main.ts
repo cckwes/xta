@@ -7,6 +7,11 @@ import { initialize as initCache } from "./lib/cache";
 import { initialize as initDatabase, mongoClient } from "./lib/database";
 import { initialize as initScheduler, stop as stopScheduler } from "./lib/scheduler";
 
+async function graceful() {
+  await stopScheduler();
+  process.exit(0);
+}
+
 async function bootstrap() {
   loadConfig();
   initCache(config.redis);
@@ -19,7 +24,8 @@ async function bootstrap() {
 
   await app.listen(3000);
 
-  await stopScheduler();
+  process.on("SIGTERM", graceful);
+  process.on("SIGINT", graceful);
 }
 
 bootstrap();

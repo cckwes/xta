@@ -17,6 +17,8 @@ export class PollExchangeRateService {
   }
 
   async pollAlwaysInCacheRates(): Promise<void> {
+    this.logger.log("polling always in cache exchange rate");
+
     const { alwaysInCacheRatePairs } = config;
     const simplifiedRatePairs: Record<string, Set<string>> = {};
 
