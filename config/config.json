@@ -1,5 +1,5 @@
 {
-  "mongodbURL": "mongodb://xta:password@localhost:27017/agenda",
+  "mongodbURL": "mongodb://xta:password@localhost:27017/xta",
   "redis": {
     "host": "localhost",
     "port": 6379

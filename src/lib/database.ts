@@ -14,7 +14,7 @@ const initialize = async (mongodbURL: string): Promise<void> => {
 
 const healthCheck = async (): Promise<HealthIndicatorResult> => {
   try {
-    await mongoClient.db("agenda").command({ ping: 1 });
+    await mongoClient.db("xta").command({ ping: 1 });
     return { mongodb: { status: "up" } };
   } catch (error) {
     return { mongodb: { status: "down", message: error.message ?? "" } };

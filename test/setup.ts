@@ -4,7 +4,7 @@ import { initialize as initDatabase, mongoClient } from "../src/lib/database";
 import { initialize as initScheduler } from "../src/lib/scheduler";
 
 async function cleanDatabase() {
-  const collections = await mongoClient.db("agenda").collections();
+  const collections = await mongoClient.db("xta").collections();
 
   for (const collection of collections) {
     await collection.deleteMany({});

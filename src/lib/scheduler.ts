@@ -8,7 +8,7 @@ const initialize = async (mongoClient: MongoClient): Promise<void> => {
     return;
   }
 
-  agenda = new Agenda({ mongo: mongoClient.db("agenda") });
+  agenda = new Agenda({ mongo: mongoClient.db("xta") });
   await agenda.start();
 };
 
