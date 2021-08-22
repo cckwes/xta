@@ -8,7 +8,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "clean": "docker-compose -f docker-compose.yml kill && docker-compose -f docker-compose.yml rm -f",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
     "start": "nest start",
     "test": "nyc ts-mocha -p tsconfig.json src/**/*.spec.ts test/**/*.spec.ts",
     "test:local": "yarn up-deps && yarn test && yarn clean",
