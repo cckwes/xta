@@ -27,7 +27,7 @@ export class ExchangeRateResolver {
 
       return { rate };
     } catch (error) {
-      this.logger.error(`Error getting rate: ${JSON.stringify(error)}`);
+      this.logger.error(`Error getting rate: ${error}`);
 
       throw new GraphQLError("Rate not available at the moment, please try again later");
     }

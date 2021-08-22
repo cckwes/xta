@@ -35,7 +35,7 @@ export class ExchangeRateController {
 
       return { rate };
     } catch (error) {
-      this.logger.error(`Error getting rate: ${JSON.stringify(error)}`);
+      this.logger.error(`Error getting rate: ${error}`);
 
       throw new ServiceUnavailableException(
         "Rate not available at the moment, please try again later",

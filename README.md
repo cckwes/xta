@@ -7,6 +7,7 @@ A simple server that host a REST endpoint and a GraphQL endpoint for querying cu
 - you'll need to have docker and docker-compose installed in your machine
 - clone this repo
 - replace the `FIXER_API_KEY` with the API key that you have
+- _Note: Please make sure you have a paid subscription plan, or else you'll get `base_currency_access_restricted` error_
 - spin up the server by
 
 ```shell
@@ -23,7 +24,7 @@ curl http://localhost:3000/exchange-rate?from=USD&to=HKD # for REST API
 curl --request POST \
   --url http://localhost:3000/graphql \
   --header 'Content-Type: application/json' \
-  --data '{"query":"query GetExchangeRate($input: ExchangeRateQueryInput!) {\n  exchangeRate(input: $input)\n}","variables":{"input":{"from":"USD","to":"HKD"}}}'
+  --data '{"query":"query GetExchangeRate($input: ExchangeRateQueryInput!) {\n  exchangeRate(input: $input) {\n    rate\n  }\n}","variables":{"input":{"from":"USD","to":"HKD"}}}'
 ```
 
 ### How to run test

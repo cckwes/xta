@@ -11,6 +11,7 @@ interface FixerGetRateResponse {
   base: string;
   date: string;
   rates: Record<string, number>;
+  error?: Record<string, any>;
 }
 
 export interface GetRateResult {
@@ -23,7 +24,7 @@ export class RateProviderService {
   async getRate(from: string, to: string[]): Promise<GetRateResult> {
     const toCurrencySymbols = to.join(",");
 
-    const { data: result } = await axios.get<FixerGetRateResponse>("/latest", {
+    const { data: result } = await axios.get<FixerGetRateResponse>("latest", {
       baseURL: config.fixer.baseURL,
       params: {
         access_key: config.fixer.apiKey,
@@ -31,6 +32,9 @@ export class RateProviderService {
         symbols: toCurrencySymbols,
       },
     });
+    if (!result.success) {
+      throw Error(result.error.type);
+    }
 
     return {
       from: result.base,
