@@ -6,4 +6,4 @@ import { PollExchangeRateService } from "./poll-exchange-rate.service";
   imports: [ExchangeRateModule],
   providers: [PollExchangeRateService],
 })
-export class PollExchangeRateModule {}
+export class PollingModule {}

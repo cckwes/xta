@@ -3,7 +3,7 @@ import { ExchangeRateModule } from "./exchange-rate/exchange-rate.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TerminusModule } from "@nestjs/terminus";
 import { HealthCheckModule } from "./health-check/health-check.module";
-import { PollExchangeRateModule } from "./poll-exchange-rate/poll-exchange-rate.module";
+import { PollingModule } from "./polling/polling.module";
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { PollExchangeRateModule } from "./poll-exchange-rate/poll-exchange-rate.
       playground: false,
       context: ({ req }) => ({ req }),
     }),
-    PollExchangeRateModule,
+    PollingModule,
     TerminusModule,
     HealthCheckModule,
   ],
