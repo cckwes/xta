@@ -7,5 +7,11 @@
   "fixer": {
     "apiKey": "sample-api-key",
     "baseURL": "http://fixer.local"
-  }
+  },
+  "alwaysInCacheRatePairs": [
+    { "from": "USD", "to": "SGD" },
+    { "from": "SGD", "to": "USD" },
+    { "from": "USD", "to": "HKD" },
+    { "from": "HKD", "to": "USD" }
+  ]
 }

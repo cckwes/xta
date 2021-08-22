@@ -11,6 +11,7 @@ export interface ConfigSchema {
     apiKey: string;
     baseURL: string;
   };
+  alwaysInCacheRatePairs: Array<{ from: string; to: string }>;
 }
 
 const configSchema = J.object({
@@ -23,6 +24,12 @@ const configSchema = J.object({
     apiKey: J.string().required(),
     baseURL: J.string().required(),
   }),
+  alwaysInCacheRatePairs: J.array().items(
+    J.object({
+      from: J.string(),
+      to: J.string(),
+    }),
+  ),
 });
 
 let config: ConfigSchema;
@@ -52,6 +59,7 @@ const loadConfigFromEnvVar = (): ConfigSchema => {
       apiKey: process.env.FIXER_API_KEY,
       baseURL: process.env.FIXER_BASE_URL,
     },
+    alwaysInCacheRatePairs: JSON.parse(process.env.ALWAYS_IN_CACHE_RATE_PAIRS),
   };
   return validateConfig(config);
 };

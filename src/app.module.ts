@@ -3,6 +3,7 @@ import { ExchangeRateModule } from "./exchange-rate/exchange-rate.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TerminusModule } from "@nestjs/terminus";
 import { HealthCheckModule } from "./health-check/health-check.module";
+import { PollExchangeRateModule } from "./poll-exchange-rate/poll-exchange-rate.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { HealthCheckModule } from "./health-check/health-check.module";
       playground: false,
       context: ({ req }) => ({ req }),
     }),
+    PollExchangeRateModule,
     TerminusModule,
     HealthCheckModule,
   ],

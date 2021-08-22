@@ -48,7 +48,6 @@ describe("GraphQL exchangeRate query", () => {
       .send(createExchangeRateQuery("USD", "SGD"))
       .expect(200)
       .then((response) => {
-        console.log(JSON.stringify(response.body));
         expect(response.body.data).to.deep.equal({
           exchangeRate: {
             rate: 1.3456,

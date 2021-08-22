@@ -1,4 +1,4 @@
-import { Agenda } from "agenda";
+import { Agenda, Job } from "agenda";
 import { MongoClient } from "mongodb";
 
 let agenda: Agenda;
@@ -25,4 +25,8 @@ const scheduleRepeatingTask = (
   agenda.every(interval, name);
 };
 
-export { initialize, stop, scheduleRepeatingTask };
+const getJobs = async (): Promise<Array<Job>> => {
+  return agenda.jobs();
+};
+
+export { initialize, stop, scheduleRepeatingTask, getJobs };
